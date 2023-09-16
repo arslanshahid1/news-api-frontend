@@ -1,0 +1,83 @@
+<nav class="navbar navbar-expand sticky-top" (scroll)="onWindowScroll">
+    <div class="container">
+        <a class="navbar-brand pt-0" (click)="goToHome()">The News</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link btn" aria-current="page" data-bs-toggle="modal"
+                            data-bs-target="#countryModal">Countries</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn" aria-current="page" data-bs-toggle="modal"
+                            data-bs-target="#categoryModal">Categories</a>
+                    </li>
+                </ul>
+
+                <span class="selected-country btn btn-dark">Selected country: {{selectedCountry}}</span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Country Modal -->
+<div class="modal fade modal-lg" id="countryModal" tabindex="-1" aria-labelledby="countryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Select Country</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class="modal-body" [formGroup]="coutryNamesForm">
+                <div class="tiles-container">
+                    <div class="tiles">
+                        <ng-container *ngFor="let country of countriesNames">
+                            <input type="radio" [id]="country.code" name="countryName" [value]="country.code"
+                                formControlName="countryName">
+                            <!-- <img [src] = `assets/images/countries/${country}.svg`> -->
+                            <label [for]="country.code">{{country.name}}</label>
+                        </ng-container>
+
+                    </div>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn update-btn" (click)="submit()" data-bs-dismiss="modal">Update
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Categories Modal -->
+<div class="modal fade modal-md" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Select category</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class="modal-body" [formGroup]="categoryNamesForm">
+                <div class="tiles-container">
+                    <div class="tiles">
+                        <ng-container *ngFor="let category of categories">
+                            <input type="radio" [id]="category" name="category" [value]="category"
+                                formControlName="category">
+                            <label [for]="category">{{category | titlecase }}</label>
+                        </ng-container>
+
+                    </div>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn update-btn" (click)="onCategoryClick()" data-bs-dismiss="modal">Update
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

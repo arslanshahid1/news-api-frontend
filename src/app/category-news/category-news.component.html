@@ -1,0 +1,5 @@
+<div class="container mt-5">
+    <p *ngIf="!newsData.length" class="alert alert-dismissible alert-danger">No news found. Please select another
+        country.</p>
+    <app-news *ngIf="newsData.length" [newsData]="newsData" [title]="title"></app-news>
+</div>

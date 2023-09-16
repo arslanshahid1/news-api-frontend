@@ -1,0 +1,118 @@
+@import 'src/dynamic.scss';
+@import 'src/colors.scss';
+.navbar {
+    height: 60px;
+    // background: #E2E2E3;
+    border-bottom: 1px solid #E2E2E3;
+    transition: all 0.2s ease-in-out;
+    &.navbar-scrolled{
+        background:rgba(245, 245, 245, 0.95);
+        box-shadow: 0px 1px 5px 0px #9b9b9b;
+    }
+    .navbar-brand{
+        cursor: pointer;
+        
+    }
+    .nav-item{
+        transition: all 0.3s ease-in-out;
+        &:hover{
+            text-underline-offset: 5px;
+            text-decoration: underline;
+        }
+    }
+    .navbar-toggler{
+        border: none;
+        &:focus{
+            box-shadow: none;
+        }
+    }
+    .navbar-collapse.show{
+        margin-top: 14px;
+        background-color: #E2E2E3;
+    }
+    .selected-country{
+        border-color: $theme-color-primary;
+        background-color: $theme-color-primary;
+        color: $white;
+        font-size: 14px;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        left: 0;
+        border-radius: 0;
+        &:hover{
+            background-color: #2e5557;
+        }
+    }
+}
+
+.modal-header {
+    font-weight: 500;
+    color: $text-gray;
+}
+
+.modal-body {
+    .tiles-container {
+        .tiles {
+            margin-top: 10px;
+            label {
+                display: inline-block;
+                border: 1px solid $border-color;
+                transition: all 0.3s;
+                border-radius: 35px;
+                padding: 10px 18px;
+                color: $text-gray;
+                margin: 5px;
+                font-weight: 500;
+            }
+            input[type="radio"] {
+                display: none;
+            }
+            input[type="radio"]+label:hover {
+                background-color: $theme-color-primary;
+                cursor: pointer;
+                color: $white;
+            }
+            input[type="radio"]:checked+label {
+                border-color: $theme-color-primary;
+                background-color: $theme-color-primary;
+                color: $white;
+            }
+        }
+    }
+
+}
+.modal-footer{
+    .update-btn{
+        border-color: $theme-color-primary;
+        background-color: $theme-color-primary;
+        color: $white;
+        &:hover{
+            background-color: #2e5557;
+        }
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .navbar{
+        height: 50px;
+        .nav-link{
+            font-size: 14px;
+        }
+        .selected-country{
+            top: 50px;
+        }
+    }
+    .modal-body {
+        .tiles-container {
+            .tiles {
+                margin-top: 10px;
+                label {
+                    margin: 4px;
+                    font-weight: 500;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}

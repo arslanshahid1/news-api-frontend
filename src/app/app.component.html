@@ -1,0 +1,5 @@
+<!-- <app-landing-page></app-landing-page> -->
+<app-navbar [countriesNames]='countriesNames' (selectedCountryname)="onCountrySelect($event)"
+  (selectedCategory)="onSelectedCategory($event)"></app-navbar>
+<router-outlet></router-outlet>
+<button class="btn btn-dark top-btn" (click)="goToTop()">&#8593;</button>

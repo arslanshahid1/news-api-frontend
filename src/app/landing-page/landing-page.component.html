@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="landing-page">
+        <p *ngIf="!newsData?.length" class="alert alert-dismissible alert-danger">No news found. Please select another
+            country.</p>
+
+        <ng-container *ngIf="newsData?.length">
+            <!-- <h2 class="main-title mb-5 mb-sm-2">Trending</h2> -->
+            <p-carousel [value]="newsData.slice(0,5)" [numVisible]="1" [numScroll]="1" [circular]="true"
+                [autoplayInterval]="6000" [showIndicators]="false">
+                <ng-template let-news pTemplate="news">
+                    <div class="row news">
+                        <div class="col-md-5 ">
+                            <div class="news-img">
+                                <img [src]="news?.urlToImage || 'assets/images/news.jpg'" width="100%" class=""
+                                    alt="...">
+                            </div>
+                        </div>
+                        <div class="col-md-7 mt-3 mt-md-0">
+                            <h2 class="news-heading">
+                                {{news?.title}}
+                            </h2>
+                            <p class="news-description">
+                                {{news?.description}}
+                            </p>
+                            <div class="news-footer">
+                                <p class="author" *ngIf="news?.author">By {{news?.author}}</p>
+                                <p class="time" *ngIf="news?.publishedAt">Published at: {{news?.publishedAt | date
+                                    :'short'}} </p>
+                            </div>
+                            <a [href]='news?.url' target="_blank" class="btn btn-outline-dark">Read more</a>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </ng-container>
+
+        <!-- <div class="breaking-news ">
+            <div class="title">Breaking News</div>
+            <div class="description">Kanye West says he's running for president in 2020.</div>
+        </div> -->
+    </div>
+    <app-news *ngIf="newsData?.length" [newsData]="newsData"></app-news>
+</div>
